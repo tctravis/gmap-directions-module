@@ -1,0 +1,124 @@
+/**
+ * Directions Module SCSS
+ *
+ * Note: this is not stand-alone CSS
+ * It is an example of a jQuery module from a larger project
+ * It may contain dependencies to files not included in this repo 
+ */
+
+/** SASS variables and mixins
+ ---------------------------------------------------------*/
+ 
+$module-border-colour: #ccc;
+
+//used to define icon sprite image for svg with optional png fallback
+@mixin icon-sprite($format:svg){
+	background-image:url(../images/icon-sprite.#{$format});
+	background-repeat:no-repeat;
+}
+
+//used to position icon sprite
+@mixin icon-sprite-position($x,$y,$width,$height,$top:0,$left:0,$position:relative){
+	background-position:$x $y;
+	height:$height;
+	width:$width;
+	@if ( ($top != 0) or ($left != 0) or ($position != relative) ) {
+		left:$left;
+		position:$position;
+		top:$top;
+	}
+}
+
+/** Directions Module styles
+ ---------------------------------------------------------*/
+
+.directions-map.module {
+    border-top: 1px solid $module-border-colour;
+    padding: 1em 0;
+    #map-canvas {
+        width: 100%;
+        img {
+            max-width: inherit;
+        }
+    }
+    form {
+        padding: .5em 0 1em;
+        label {
+            margin: 0;
+        }
+    }
+    .from-input-wrapper {
+        input[type='text'] {
+            border: 1px solid $module-border-colour;
+            border-right: none;
+            height: 36px;
+        }
+        padding:0 36px 1em 0;
+        position:relative;
+        #find-location {
+            border: 1px solid $module-border-colour;
+            border-left: none;
+            @include icon-sprite-position(-292px, -437px, 36px, 36px);
+            display: block;
+            position: absolute;
+            right: 0;
+            top: 0;
+        }
+    }
+    .travel-mode {
+        float: left;
+        @include horizontal-list(false);
+        a {
+            display: block;
+            outline: none;
+            &: hover {
+                background-color: $module-bg-colour;
+            }
+        }
+        li:before {
+            display: none;
+        }
+        .current {
+            background-color: $module-bg-colour;
+        }
+        .driving a {
+            @include icon-sprite-position(-36px, -678px, 50px, 38px);
+        }
+        .transit a {
+            @include icon-sprite-position(-119px, -679px, 50px, 38px);
+        }
+        .walking a {
+            @include icon-sprite-position(-204px, -679px, 50px, 38px);
+        }
+        .bicycling a {
+            @include icon-sprite-position(-282px, -679px, 50px, 38px);
+        }
+    }
+    input[type=submit] {
+        display: block;
+        float: right;
+        margin: 4px 0 0 1em;
+    }
+    //directions text styles: google map overrides
+    .adp-step, .adp-substep {
+        border-width: 5px;
+        border-color: $module-bg-colour;
+    }
+    @media # {
+        $mq-desktop
+    }
+    {
+        .from-input-wrapper {
+            @include span-columns(5, 9);
+        }
+        .travel-mode-wrapper {
+            @include span-columns(4 omega, 9);
+        }
+    }
+}
+//Modernizr detect geolocation enabled devices
+.no-geolocation {
+    .find-location {
+        display: none;
+    }
+}

@@ -1,0 +1,29 @@
+<!-- 
+
+-->
+<section class="directions-map module white">
+	<h2 class="module-title">Get to Silverstone</h2>
+	<form>
+		<div class="from-input-wrapper">
+			<label class="input" for="from">
+				<span>From</span>
+				<input type="text" id="from">
+			</label>
+			<a href="#" class="ir" id="find-location">Find location</a>
+		</div>
+		<div class="travel-mode-wrapper clearfix">
+			<ul class="travel-mode">
+				<li class="driving"><a href="#" data-mode="DRIVING" class="ir">By car</a></li>
+				<li class="transit"><a href="#" data-mode="TRANSIT" class="ir">By bicycle</a></li>
+				<li class="walking"><a href="#" data-mode="WALKING" class="ir">By public transport</a></li>
+				<li class="bicycling"><a href="#" data-mode="BICYCLING" class="ir">On foot</a></li>
+			</ul>
+			<input type="submit" value="Go">
+		</div>
+	</form>
+
+	<div id="map-canvas" class="embed-container"></div>
+
+	<div id="directions-text"></div>
+
+</section>
