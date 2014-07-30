@@ -104,15 +104,12 @@ $module-border-colour: #ccc;
         border-width: 5px;
         border-color: $module-bg-colour;
     }
-    @media # {
-        $mq-desktop
-    }
-    {
+    @media #{$mq-desktop} {
         .from-input-wrapper {
-            @include span-columns(5, 9);
+            @include span-columns(5,9);
         }
         .travel-mode-wrapper {
-            @include span-columns(4 omega, 9);
+            @include span-columns(4 omega,9);
         }
     }
 }
